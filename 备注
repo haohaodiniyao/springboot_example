@@ -1,0 +1,12 @@
+1.集成mybatis
+https://segmentfault.com/a/1190000008829934
+2.springboot的yml配置
+3.springboot学习
+http://412887952-qq-com.iteye.com/blog/2303121
+4.mybatis trim使用
+mybatis trim标签的使用
+　　trim 属性
+　　prefix：前缀
+　　suffix：后缀
+　　prefixOverrides：忽略第一个指定分隔符  and|or 可以指定多个
+　　suffixOverrides：会略最后一个分隔符

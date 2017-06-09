@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.entity.UserMapperExtend"> 
+  <insert id="insertSelectiveBatch" parameterType="java.util.ArrayList">
+    insert into USER (uname,pword) VALUES
+    <foreach collection="list" item="user" separator=",">
+      (#{user.uname},#{user.pword})
+    </foreach>
+  </insert>
+  <select id="selectByUser" parameterType="com.example.demo.entity.User" resultMap="com.example.demo.entity.UserMapper.BaseResultMap">
+    <bind name="pattern" value="'%'+_parameter.getUname()+'%'"></bind>
+    SELECT
+      <include refid="com.example.demo.entity.UserMapper.Base_Column_List"></include>
+    from USER
+      WHERE uname like #{pattern}
+  </select>
+</mapper>

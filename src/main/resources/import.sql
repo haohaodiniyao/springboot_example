@@ -1,0 +1,6 @@
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uname` varchar(255) NOT NULL DEFAULT '' COMMENT '用户名',
+  `pword` varchar(255) NOT NULL DEFAULT '' COMMENT '密码',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
