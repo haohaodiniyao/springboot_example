@@ -3,7 +3,7 @@
 <mapper namespace="com.example.demo.entity.UserMapperExtend"> 
   <insert id="insertSelectiveBatch" parameterType="java.util.ArrayList">
     insert into USER (uname,pword) VALUES
-    <foreach collection="list" item="user" separator=",">
+    <foreach collection="list" item="user" separator="," open="(" close=")">
       (#{user.uname},#{user.pword})
     </foreach>
   </insert>
@@ -13,5 +13,27 @@
       <include refid="com.example.demo.entity.UserMapper.Base_Column_List"></include>
     from USER
       WHERE uname like #{pattern}
+  </select>
+  <select id="selectPartition" resultType="com.example.demo.entity.PartitionInfo">
+      select
+        partition_name part,
+        partition_expression expr,
+        partition_description descr,
+        table_rows rows
+      from information_schema.partitions  where
+        table_schema = schema()
+      and table_name='user';
+  </select>
+  <update id="addPartition">
+    alter TABLE USER  ADD partition (partition ${partitionName} values less than ('${partitionValue}'))
+  </update>
+  <update id="dropPartition">
+    ALTER TABLE USER DROP PARTITION ${partitionName}
+  </update>
+  <update id="truncatePartition">
+    ALTER TABLE USER truncate PARTITION ${partitionName}
+  </update>
+  <select id="explainSql" resultType="com.example.demo.entity.ExplainInfo">
+    explain ${executeSql}
   </select>
 </mapper>

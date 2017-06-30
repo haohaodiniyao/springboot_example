@@ -10,3 +10,7 @@ mybatis trim标签的使用
 　　suffix：后缀
 　　prefixOverrides：忽略第一个指定分隔符  and|or 可以指定多个
 　　suffixOverrides：会略最后一个分隔符
+
+
+5-springboot learn example
+  https://git.oschina.net/didispace/SpringBoot-Learning

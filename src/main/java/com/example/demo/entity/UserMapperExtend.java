@@ -13,4 +13,9 @@ public interface UserMapperExtend extends UserMapper{
      */
     void insertSelectiveBatch(List<User> users);
     List<User> selectByUser(User user);
+    List<PartitionInfo> selectPartition();
+    void addPartition(@Param("partitionName") String partitionName,@Param("partitionValue") String partitionValue);
+    void dropPartition(@Param("partitionName") String partitionName);
+    void truncatePartition(@Param("partitionName") String partitionName);
+    List<ExplainInfo> explainSql(@Param("executeSql") String executeSql);
 }
